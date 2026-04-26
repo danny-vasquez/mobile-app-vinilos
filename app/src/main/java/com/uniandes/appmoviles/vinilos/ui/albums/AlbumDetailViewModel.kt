@@ -17,10 +17,12 @@ class AlbumDetailViewModel(application: Application) : AndroidViewModel(applicat
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> get() = _isLoading
 
-    private val _error = MutableLiveData<String>()
-    val error: LiveData<String> get() = _error
+    private val _error = MutableLiveData<String?>()
+    val error: LiveData<String?> get() = _error
 
     fun fetchAlbum(albumId: Int) {
+        if (_isLoading.value == true) return
+        _error.value = null
         _isLoading.value = true
         repository.getAlbum(
             albumId = albumId,

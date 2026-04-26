@@ -1,8 +1,10 @@
 package com.uniandes.appmoviles.vinilos.network
 
 import android.content.Context
+import com.android.volley.NoConnectionError
 import com.android.volley.Request
 import com.android.volley.RequestQueue
+import com.android.volley.ServerError
 import com.android.volley.toolbox.JsonArrayRequest
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
@@ -39,7 +41,7 @@ class NetworkServiceAdapter(context: Context) {
                 onComplete(albums)
             },
             { error ->
-                onError(Exception(error.message))
+                onError(mapVolleyError(error))
             }
         )
         requestQueue.add(request)
@@ -54,11 +56,14 @@ class NetworkServiceAdapter(context: Context) {
         val request = JsonObjectRequest(
             Request.Method.GET, url, null,
             { response ->
-                val album = parseAlbum(response)
-                onComplete(album)
+                try {
+                    onComplete(parseAlbum(response))
+                } catch (e: Exception) {
+                    onError(Exception("Error al procesar los datos del álbum"))
+                }
             },
             { error ->
-                onError(Exception(error.message))
+                onError(mapVolleyError(error))
             }
         )
         requestQueue.add(request)
@@ -67,20 +72,39 @@ class NetworkServiceAdapter(context: Context) {
     private fun parseAlbums(response: JSONArray): List<Album> {
         val albums = mutableListOf<Album>()
         for (i in 0 until response.length()) {
-            albums.add(parseAlbum(response.getJSONObject(i)))
+            try {
+                albums.add(parseAlbum(response.getJSONObject(i)))
+            } catch (_: Exception) {
+                // skip malformed items
+            }
         }
         return albums
     }
 
     private fun parseAlbum(obj: JSONObject): Album {
         return Album(
-            albumId = obj.getInt("id"),
-            name = obj.getString("name"),
-            cover = obj.getString("cover"),
-            releaseDate = obj.getString("releaseDate"),
-            description = obj.getString("description"),
-            genre = obj.getString("genre"),
-            recordLabel = obj.getString("recordLabel")
+            albumId = obj.optInt("id", 0),
+            name = obj.optString("name", ""),
+            cover = obj.optString("cover", ""),
+            releaseDate = obj.optString("releaseDate", ""),
+            description = obj.optString("description", ""),
+            genre = obj.optString("genre", ""),
+            recordLabel = obj.optString("recordLabel", "")
         )
+    }
+
+    private fun mapVolleyError(error: com.android.volley.VolleyError): Exception {
+        return when {
+            error is NoConnectionError -> Exception("Sin conexión a internet")
+            error is ServerError && error.networkResponse != null -> {
+                val code = error.networkResponse.statusCode
+                when {
+                    code == 404 -> Exception("Recurso no encontrado (404)")
+                    code >= 500 -> Exception("Error del servidor ($code)")
+                    else -> Exception("Error HTTP $code")
+                }
+            }
+            else -> Exception(error.message ?: "Error desconocido")
+        }
     }
 }
