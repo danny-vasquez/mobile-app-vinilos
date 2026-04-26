@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">Vinilos</string>
     <string name="album_cover">Portada del álbum</string>
+    <string name="label_genre">Género</string>
+    <string name="label_release_date">Fecha de lanzamiento</string>
+    <string name="label_record_label">Sello discográfico</string>
+    <string name="label_description">Descripción</string>
+    <string name="empty_albums">No hay álbumes disponibles</string>
+    <string name="retry">Reintentar</string>
 </resources>
