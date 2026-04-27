@@ -23,6 +23,10 @@ android {
         }
     }
 
+    testOptions {
+        animationsDisabled = true
+    }
+
     buildFeatures {
         viewBinding = true
     }
@@ -51,7 +55,11 @@ dependencies {
     implementation(libs.glide)
     implementation(libs.recyclerview)
     implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
+    implementation(libs.androidx.espresso.idling.resource)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+    androidTestImplementation(libs.androidx.espresso.contrib) {
+        exclude(group = "org.checkerframework", module = "checker")
+    }
 }

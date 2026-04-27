@@ -34,13 +34,16 @@ class NetworkServiceAdapter(context: Context) {
         onError: (Exception) -> Unit
     ) {
         val url = "$BASE_URL/albums"
+        EspressoIdlingResource.increment()
         val request = JsonArrayRequest(
             Request.Method.GET, url, null,
             { response ->
+                EspressoIdlingResource.decrement()
                 val albums = parseAlbums(response)
                 onComplete(albums)
             },
             { error ->
+                EspressoIdlingResource.decrement()
                 onError(mapVolleyError(error))
             }
         )
@@ -53,9 +56,11 @@ class NetworkServiceAdapter(context: Context) {
         onError: (Exception) -> Unit
     ) {
         val url = "$BASE_URL/albums/$albumId"
+        EspressoIdlingResource.increment()
         val request = JsonObjectRequest(
             Request.Method.GET, url, null,
             { response ->
+                EspressoIdlingResource.decrement()
                 try {
                     onComplete(parseAlbum(response))
                 } catch (e: Exception) {
@@ -63,6 +68,7 @@ class NetworkServiceAdapter(context: Context) {
                 }
             },
             { error ->
+                EspressoIdlingResource.decrement()
                 onError(mapVolleyError(error))
             }
         )
