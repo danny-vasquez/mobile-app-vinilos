@@ -26,7 +26,7 @@ El archivo APK generado se encontrará en la raiz delk proyecto.
 ### Crear el emulador API 34 (solo la primera vez)
 
 1. En Android Studio: `Tools` → `Device Manager` → botón `+`
-2. Elige un hardware (ej. Pixel 6) → `Next`
+2. Elige un hardware (ej. Pixel 4 API 34) → `Next`
 3. En la pestaña **Release Name**, selecciona **UpsideDownCake · API 34 · x86_64**
    - Si aparece un ícono de descarga, descárgalo primero
 4. `Next` → `Finish`
