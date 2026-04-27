@@ -11,16 +11,18 @@ class AlbumsViewModel(application: Application) : AndroidViewModel(application) 
 
     private val repository = AlbumRepositoryImpl(application)
 
-    private val _albums = MutableLiveData<List<Album>>()
+    private val _albums = MutableLiveData<List<Album>>(emptyList())
     val albums: LiveData<List<Album>> get() = _albums
 
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> get() = _isLoading
 
-    private val _error = MutableLiveData<String>()
-    val error: LiveData<String> get() = _error
+    private val _error = MutableLiveData<String?>()
+    val error: LiveData<String?> get() = _error
 
     fun fetchAlbums() {
+        if (_isLoading.value == true) return
+        _error.value = null
         _isLoading.value = true
         repository.getAlbums(
             onComplete = { albums ->
