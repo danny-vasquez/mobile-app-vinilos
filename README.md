@@ -1,5 +1,20 @@
 # mobile-app-vinilos
 
+## Construcción y Ejecución Local
+
+Las instrucciones en el README del repositorio son suficientes para construir la aplicación de forma local:
+
+1. Clonar el repositorio.
+2. Abrir el proyecto en Android Studio.
+3. Sincronizar el proyecto con los archivos de Gradle.
+4. Ejecutar la aplicación (`Run 'app'`) en un emulador o dispositivo físico (se recomienda usar un emulador con **API 34**).
+
+Para generar el APK de depuración desde la terminal:
+```bash
+./gradlew assembleDebug
+```
+El archivo APK generado se encontrará en la raiz delk proyecto.
+
 ## Ejecución de pruebas E2E (Espresso)
 
 ### Requisitos previos
