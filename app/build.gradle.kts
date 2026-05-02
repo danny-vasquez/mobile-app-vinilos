@@ -1,7 +1,6 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
-    jacoco
 }
 
 android {
@@ -18,9 +17,6 @@ android {
     }
 
     buildTypes {
-        debug {
-            enableUnitTestCoverage = true
-        }
         release {
             isMinifyEnabled = false
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
@@ -66,24 +62,4 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.contrib) {
         exclude(group = "org.checkerframework", module = "checker")
     }
-}
-
-tasks.register<JacocoReport>("jacocoTestReport") {
-    dependsOn("testDebugUnitTest")
-    reports {
-        xml.required.set(true)
-        html.required.set(true)
-    }
-    val fileFilter = listOf(
-        "**/R.class", "**/R\$*.class", "**/BuildConfig.*", "**/Manifest*.*",
-        "**/*Test*.*", "android/**/*.*", "**/databinding/**", "**/BR.class"
-    )
-    val debugTree = fileTree("${layout.buildDirectory.get()}/tmp/kotlin-classes/debug") {
-        exclude(fileFilter)
-    }
-    sourceDirectories.setFrom(files("${projectDir}/src/main/java"))
-    classDirectories.setFrom(files(debugTree))
-    executionData.setFrom(fileTree(layout.buildDirectory.get()) {
-        include("outputs/unit_test_code_coverage/debugUnitTest/testDebugUnitTest.exec")
-    })
 }
