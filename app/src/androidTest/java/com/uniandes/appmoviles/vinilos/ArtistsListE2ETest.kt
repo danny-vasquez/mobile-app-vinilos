@@ -1,6 +1,7 @@
 package com.uniandes.appmoviles.vinilos
 
 import androidx.test.espresso.Espresso.onView
+import androidx.navigation.Navigation
 import androidx.test.espresso.IdlingRegistry
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
@@ -25,8 +26,7 @@ class ArtistsListE2ETest {
     fun registerIdlingResource() {
         IdlingRegistry.getInstance().register(EspressoIdlingResource.countingIdlingResource)
         activityRule.scenario.onActivity { activity ->
-            androidx.navigation.Navigation
-                .findNavController(activity, R.id.nav_host_fragment)
+            Navigation.findNavController(activity, R.id.nav_host_fragment)
                 .navigate(R.id.artistsFragment)
         }
     }

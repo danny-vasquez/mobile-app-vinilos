@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.uniandes.appmoviles.vinilos.R
 import com.uniandes.appmoviles.vinilos.databinding.ItemArtistBinding
 import com.uniandes.appmoviles.vinilos.model.Artist
@@ -43,7 +44,7 @@ class ArtistAdapter :
                 .load(artist.image)
                 .placeholder(R.drawable.ic_launcher_background)
                 .error(R.drawable.ic_launcher_background)
-                .transition(com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade())
+                .transition(DrawableTransitionOptions.withCrossFade())
                 .into(binding.artistImage)
         }
     }

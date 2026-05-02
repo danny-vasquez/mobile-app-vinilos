@@ -101,9 +101,7 @@ class NetworkServiceAdapter(context: Context) {
         for (i in 0 until response.length()) {
             try {
                 artists.add(parseArtist(response.getJSONObject(i)))
-            } catch (_: Exception) {
-                // skip malformed items
-            }
+            } catch (_: Exception) { }
         }
         return artists
     }
@@ -123,9 +121,7 @@ class NetworkServiceAdapter(context: Context) {
         for (i in 0 until response.length()) {
             try {
                 albums.add(parseAlbum(response.getJSONObject(i)))
-            } catch (_: Exception) {
-                // skip malformed items
-            }
+            } catch (_: Exception) { }
         }
         return albums
     }
