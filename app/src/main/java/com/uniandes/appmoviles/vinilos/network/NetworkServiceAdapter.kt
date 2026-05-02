@@ -21,7 +21,7 @@ class NetworkServiceAdapter(context: Context) {
 
     companion object {
         private var instance: NetworkServiceAdapter? = null
-        private const val BASE_URL = "https://mobile-app-vinilos-a848950b5db4.herokuapp.com"
+        private const val BASE_URL = "https://backvynils-q6yc.onrender.com"
 
         fun getInstance(context: Context): NetworkServiceAdapter {
             return instance ?: synchronized(this) {
