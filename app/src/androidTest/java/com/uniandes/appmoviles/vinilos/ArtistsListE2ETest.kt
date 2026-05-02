@@ -22,35 +22,30 @@ class ArtistsListE2ETest {
     val activityRule = ActivityScenarioRule(MainActivity::class.java)
 
     @Before
-    fun setup() {
+    fun registerIdlingResource() {
         IdlingRegistry.getInstance().register(EspressoIdlingResource.countingIdlingResource)
-        navigateToArtists()
-    }
-
-    @After
-    fun teardown() {
-        IdlingRegistry.getInstance().unregister(EspressoIdlingResource.countingIdlingResource)
-    }
-
-    private fun navigateToArtists() {
         activityRule.scenario.onActivity { activity ->
-            val navController = androidx.navigation.Navigation.findNavController(
-                activity, R.id.nav_host_fragment
-            )
-            navController.navigate(R.id.artistsFragment)
+            androidx.navigation.Navigation
+                .findNavController(activity, R.id.nav_host_fragment)
+                .navigate(R.id.artistsFragment)
         }
     }
 
-    @Test
-    fun progressBarIsGoneAfterLoad() {
-        onView(withId(R.id.progressBar))
-            .check(matches(not(isDisplayed())))
+    @After
+    fun unregisterIdlingResource() {
+        IdlingRegistry.getInstance().unregister(EspressoIdlingResource.countingIdlingResource)
     }
 
     @Test
-    fun swipeRefreshLayoutIsPresent() {
+    fun swipeRefreshIsDisplayed() {
         onView(withId(R.id.swipeRefresh))
             .check(matches(isDisplayed()))
+    }
+
+    @Test
+    fun progressBarIsHiddenAfterLoad() {
+        onView(withId(R.id.progressBar))
+            .check(matches(not(isDisplayed())))
     }
 
     @Test
@@ -62,7 +57,7 @@ class ArtistsListE2ETest {
     }
 
     @Test
-    fun recyclerIsHiddenWhenNoArtists() {
+    fun recyclerIsHiddenWhenListIsEmpty() {
         onView(withId(R.id.progressBar))
             .check(matches(not(isDisplayed())))
         onView(withId(R.id.recyclerArtists))

@@ -48,8 +48,9 @@ class ArtistsFragment : Fragment() {
     private fun observeViewModel() {
         viewModel.artists.observe(viewLifecycleOwner) { artists ->
             adapter.updateArtists(artists)
-            binding.emptyView.visibility = if (artists.isEmpty()) View.VISIBLE else View.GONE
-            binding.recyclerArtists.visibility = if (artists.isEmpty()) View.GONE else View.VISIBLE
+            val hasError = !viewModel.error.value.isNullOrBlank()
+            binding.emptyView.visibility = if (artists.isEmpty() && !hasError) View.VISIBLE else View.GONE
+            binding.recyclerArtists.visibility = if (artists.isNotEmpty()) View.VISIBLE else View.GONE
         }
         viewModel.isLoading.observe(viewLifecycleOwner) { isLoading ->
             binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
@@ -57,6 +58,7 @@ class ArtistsFragment : Fragment() {
         }
         viewModel.error.observe(viewLifecycleOwner) { errorMsg ->
             if (!errorMsg.isNullOrBlank()) {
+                binding.emptyView.visibility = View.GONE
                 Snackbar.make(binding.root, errorMsg, Snackbar.LENGTH_LONG)
                     .setAction(R.string.retry) { viewModel.fetchArtists() }
                     .show()
