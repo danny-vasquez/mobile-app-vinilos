@@ -7,4 +7,6 @@
     <string name="label_description">Descripción</string>
     <string name="empty_albums">No hay álbumes disponibles</string>
     <string name="retry">Reintentar</string>
+    <string name="artist_image">Foto del artista</string>
+    <string name="empty_artists">No hay artistas disponibles</string>
 </resources>

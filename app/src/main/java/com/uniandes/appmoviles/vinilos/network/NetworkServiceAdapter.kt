@@ -9,6 +9,7 @@ import com.android.volley.toolbox.JsonArrayRequest
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.uniandes.appmoviles.vinilos.model.Album
+import com.uniandes.appmoviles.vinilos.model.Artist
 import org.json.JSONArray
 import org.json.JSONObject
 
@@ -73,6 +74,48 @@ class NetworkServiceAdapter(context: Context) {
             }
         )
         requestQueue.add(request)
+    }
+
+    fun getArtists(
+        onComplete: (List<Artist>) -> Unit,
+        onError: (Exception) -> Unit
+    ) {
+        val url = "$BASE_URL/musicians"
+        EspressoIdlingResource.increment()
+        val request = JsonArrayRequest(
+            Request.Method.GET, url, null,
+            { response ->
+                EspressoIdlingResource.decrement()
+                onComplete(parseArtists(response))
+            },
+            { error ->
+                EspressoIdlingResource.decrement()
+                onError(mapVolleyError(error))
+            }
+        )
+        requestQueue.add(request)
+    }
+
+    private fun parseArtists(response: JSONArray): List<Artist> {
+        val artists = mutableListOf<Artist>()
+        for (i in 0 until response.length()) {
+            try {
+                artists.add(parseArtist(response.getJSONObject(i)))
+            } catch (_: Exception) {
+                // skip malformed items
+            }
+        }
+        return artists
+    }
+
+    private fun parseArtist(obj: JSONObject): Artist {
+        return Artist(
+            artistId = obj.optInt("id", 0),
+            name = obj.optString("name", ""),
+            image = obj.optString("image", ""),
+            description = obj.optString("description", ""),
+            birthDate = obj.optString("birthDate", "")
+        )
     }
 
     private fun parseAlbums(response: JSONArray): List<Album> {
