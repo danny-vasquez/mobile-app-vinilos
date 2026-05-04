@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import com.uniandes.appmoviles.vinilos.R
@@ -32,7 +33,11 @@ class ArtistsFragment : Fragment() {
 
         viewModel = ViewModelProvider(this)[ArtistsViewModel::class.java]
 
-        adapter = ArtistAdapter()
+        adapter = ArtistAdapter { artist ->
+            val bundle = Bundle()
+            bundle.putInt("artistId", artist.artistId)
+            findNavController().navigate(R.id.action_artistsFragment_to_artistDetailFragment, bundle)
+        }
 
         binding.recyclerArtists.layoutManager = GridLayoutManager(requireContext(), 2)
         binding.recyclerArtists.adapter = adapter

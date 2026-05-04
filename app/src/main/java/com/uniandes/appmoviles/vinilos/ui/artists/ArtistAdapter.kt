@@ -12,7 +12,7 @@ import com.uniandes.appmoviles.vinilos.model.Artist
 import java.text.SimpleDateFormat
 import java.util.Locale
 
-class ArtistAdapter :
+class ArtistAdapter(private val onArtistClick: (Artist) -> Unit = {}) :
     RecyclerView.Adapter<ArtistAdapter.ArtistViewHolder>() {
 
     private var artists = listOf<Artist>()
@@ -46,6 +46,7 @@ class ArtistAdapter :
                 .error(R.drawable.ic_launcher_background)
                 .transition(DrawableTransitionOptions.withCrossFade())
                 .into(binding.artistImage)
+            binding.root.setOnClickListener { onArtistClick(artist) }
         }
     }
 

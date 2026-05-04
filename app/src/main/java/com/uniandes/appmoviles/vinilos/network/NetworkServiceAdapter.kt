@@ -216,6 +216,31 @@ class NetworkServiceAdapter(context: Context) {
         requestQueue.add(request)
     }
 
+    fun getArtist(
+        artistId: Int,
+        onComplete: (Artist) -> Unit,
+        onError: (Exception) -> Unit
+    ) {
+        val url = "$BASE_URL/musicians/$artistId"
+        EspressoIdlingResource.increment()
+        val request = JsonObjectRequest(
+            Request.Method.GET, url, null,
+            { response ->
+                EspressoIdlingResource.decrement()
+                try {
+                    onComplete(parseArtist(response))
+                } catch (e: Exception) {
+                    onError(Exception("Error al procesar los datos del artista"))
+                }
+            },
+            { error ->
+                EspressoIdlingResource.decrement()
+                onError(mapVolleyError(error))
+            }
+        )
+        requestQueue.add(request)
+    }
+
     private fun parseArtists(response: JSONArray): List<Artist> {
         val artists = mutableListOf<Artist>()
         for (i in 0 until response.length()) {

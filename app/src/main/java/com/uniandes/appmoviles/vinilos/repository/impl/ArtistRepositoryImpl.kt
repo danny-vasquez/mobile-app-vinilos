@@ -12,4 +12,8 @@ class ArtistRepositoryImpl(private val context: Context) : ArtistRepository {
     override fun getArtists(onComplete: (List<Artist>) -> Unit, onError: (Exception) -> Unit) {
         networkAdapter.getArtists(onComplete, onError)
     }
+
+    override fun getArtist(artistId: Int, onComplete: (Artist) -> Unit, onError: (Exception) -> Unit) {
+        networkAdapter.getArtist(artistId, onComplete, onError)
+    }
 }

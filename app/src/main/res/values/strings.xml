@@ -9,6 +9,7 @@
     <string name="retry">Reintentar</string>
     <string name="artist_image">Foto del artista</string>
     <string name="empty_artists">No hay artistas disponibles</string>
+    <string name="label_birth_date">Fecha de nacimiento</string>
     <string name="nav_albums">Álbumes</string>
     <string name="nav_artists">Artistas</string>
 
