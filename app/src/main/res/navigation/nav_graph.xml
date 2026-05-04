@@ -32,6 +32,21 @@
         android:id="@+id/artistsFragment"
         android:name="com.uniandes.appmoviles.vinilos.ui.artists.ArtistsFragment"
         android:label="Artistas"
-        tools:layout="@layout/fragment_artists" />
+        tools:layout="@layout/fragment_artists">
+        <action
+            android:id="@+id/action_artistsFragment_to_artistDetailFragment"
+            app:destination="@id/artistDetailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/artistDetailFragment"
+        android:name="com.uniandes.appmoviles.vinilos.ui.artists.ArtistDetailFragment"
+        android:label="Detalle del artista"
+        tools:layout="@layout/fragment_artist_detail">
+        <argument
+            android:name="artistId"
+            app:argType="integer"
+            android:defaultValue="0" />
+    </fragment>
 
 </navigation>
