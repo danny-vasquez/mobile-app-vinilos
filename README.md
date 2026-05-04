@@ -1,5 +1,20 @@
 # mobile-app-vinilos
 
+## Construcción y Ejecución Local
+
+Las instrucciones en el README del repositorio son suficientes para construir la aplicación de forma local:
+
+1. Clonar el repositorio.
+2. Abrir el proyecto en Android Studio.
+3. Sincronizar el proyecto con los archivos de Gradle.
+4. Ejecutar la aplicación (`Run 'app'`) en un emulador o dispositivo físico (se recomienda usar un emulador con **API 34**).
+
+Para generar el APK de depuración desde la terminal:
+```bash
+./gradlew assembleDebug
+```
+El archivo APK generado se encontrará en la raiz delk proyecto.
+
 ## Ejecución de pruebas E2E (Espresso)
 
 ### Requisitos previos
@@ -11,7 +26,7 @@
 ### Crear el emulador API 34 (solo la primera vez)
 
 1. En Android Studio: `Tools` → `Device Manager` → botón `+`
-2. Elige un hardware (ej. Pixel 6) → `Next`
+2. Elige un hardware (ej. Pixel 4 API 34) → `Next`
 3. En la pestaña **Release Name**, selecciona **UpsideDownCake · API 34 · x86_64**
    - Si aparece un ícono de descarga, descárgalo primero
 4. `Next` → `Finish`
