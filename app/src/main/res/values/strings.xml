@@ -11,4 +11,20 @@
     <string name="empty_artists">No hay artistas disponibles</string>
     <string name="nav_albums">Álbumes</string>
     <string name="nav_artists">Artistas</string>
+
+    <!-- Comentarios -->
+    <string name="title_comments">Comentarios</string>
+    <string name="btn_add_comment">Agregar Comentario</string>
+    <string name="dialog_add_comment_title">Nuevo Comentario</string>
+    <string name="hint_name">Nombre</string>
+    <string name="hint_telephone">Teléfono</string>
+    <string name="hint_email">Correo Electrónico</string>
+    <string name="hint_comment">Comentario</string>
+    <string name="label_rating">Calificación (1–5):</string>
+    <string name="btn_cancel">Cancelar</string>
+    <string name="btn_save">Guardar</string>
+    <string name="msg_comment_added">Comentario agregado exitosamente</string>
+    <string name="error_empty_fields">Por favor complete todos los campos</string>
+    <string name="error_invalid_rating">La calificación debe estar entre 1 y 5</string>
+    <string name="error_generic">Ocurrió un error inesperado</string>
 </resources>

@@ -10,6 +10,7 @@ import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.uniandes.appmoviles.vinilos.model.Album
 import com.uniandes.appmoviles.vinilos.model.Artist
+import com.uniandes.appmoviles.vinilos.model.Comment
 import org.json.JSONArray
 import org.json.JSONObject
 
@@ -67,6 +68,125 @@ class NetworkServiceAdapter(context: Context) {
                 } catch (e: Exception) {
                     onError(Exception("Error al procesar los datos del álbum"))
                 }
+            },
+            { error ->
+                EspressoIdlingResource.decrement()
+                onError(mapVolleyError(error))
+            }
+        )
+        requestQueue.add(request)
+    }
+
+    fun getComments(
+        albumId: Int,
+        onComplete: (List<Comment>) -> Unit,
+        onError: (Exception) -> Unit
+    ) {
+        val url = "$BASE_URL/albums/$albumId/comments"
+        EspressoIdlingResource.increment()
+        val request = JsonArrayRequest(
+            Request.Method.GET, url, null,
+            { response ->
+                EspressoIdlingResource.decrement()
+                val comments = mutableListOf<Comment>()
+                for (i in 0 until response.length()) {
+                    val obj = response.getJSONObject(i)
+                    val collector = obj.optJSONObject("collector")
+                    comments.add(
+                        Comment(
+                            id = obj.optInt("id"),
+                            description = obj.optString("description"),
+                            rating = obj.optInt("rating"),
+                            collectorId = collector?.optInt("id"),
+                            collectorName = collector?.optString("name") ?: ""
+                        )
+                    )
+                }
+                onComplete(comments)
+            },
+            { error ->
+                EspressoIdlingResource.decrement()
+                onError(mapVolleyError(error))
+            }
+        )
+        requestQueue.add(request)
+    }
+
+    fun postCollector(
+        name: String,
+        telephone: String,
+        email: String,
+        onComplete: (Int) -> Unit,
+        onError: (Exception) -> Unit
+    ) {
+        val url = "$BASE_URL/collectors"
+        val body = JSONObject().apply {
+            put("name", name)
+            put("telephone", telephone)
+            put("email", email)
+        }
+        EspressoIdlingResource.increment()
+        val request = JsonObjectRequest(
+            Request.Method.POST, url, body,
+            { response ->
+                EspressoIdlingResource.decrement()
+                val collectorId = response.optInt("id", -1)
+                if (collectorId != -1) onComplete(collectorId)
+                else onError(Exception("Error al obtener ID del coleccionista"))
+            },
+            { error ->
+                EspressoIdlingResource.decrement()
+                onError(mapVolleyError(error))
+            }
+        )
+        requestQueue.add(request)
+    }
+
+    fun postComment(
+        albumId: Int,
+        collectorId: Int,
+        description: String,
+        rating: Int,
+        onComplete: () -> Unit,
+        onError: (Exception) -> Unit
+    ) {
+        val url = "$BASE_URL/albums/$albumId/comments"
+        val body = JSONObject().apply {
+            put("description", description)
+            put("rating", rating)
+            put("collector", JSONObject().apply { put("id", collectorId) })
+        }
+        EspressoIdlingResource.increment()
+        val request = JsonObjectRequest(
+            Request.Method.POST, url, body,
+            { _ ->
+                EspressoIdlingResource.decrement()
+                onComplete()
+            },
+            { error ->
+                EspressoIdlingResource.decrement()
+                onError(mapVolleyError(error))
+            }
+        )
+        requestQueue.add(request)
+    }
+
+    fun getCollectors(
+        onComplete: (Map<Int, String>) -> Unit,
+        onError: (Exception) -> Unit
+    ) {
+        val url = "$BASE_URL/collectors"
+        EspressoIdlingResource.increment()
+        val request = JsonArrayRequest(
+            Request.Method.GET, url, null,
+            { response ->
+                EspressoIdlingResource.decrement()
+                val collectorsMap = mutableMapOf<Int, String>()
+                for (i in 0 until response.length()) {
+                    val obj = response.getJSONObject(i)
+                    collectorsMap[obj.optInt("id")] = obj.optString("name")
+                }
+                onComplete(collectorsMap)
             },
             { error ->
                 EspressoIdlingResource.decrement()
