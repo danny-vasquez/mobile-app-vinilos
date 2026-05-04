@@ -27,4 +27,11 @@
             android:defaultValue="0" />
     </fragment>
 
+
+    <fragment
+        android:id="@+id/artistsFragment"
+        android:name="com.uniandes.appmoviles.vinilos.ui.artists.ArtistsFragment"
+        android:label="Artistas"
+        tools:layout="@layout/fragment_artists" />
+
 </navigation>
