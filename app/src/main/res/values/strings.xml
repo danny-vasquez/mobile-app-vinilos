@@ -14,6 +14,8 @@
     <string name="nav_artists">Artistas</string>
     <string name="artists_heading">Artists</string>
     <string name="artists_subtitle">The architects of sound and vision.</string>
+    <string name="label_tracks">TRACKS</string>
+    <string name="label_actions">Actions</string>
 
     <!-- Comentarios -->
     <string name="title_comments">Comentarios</string>
@@ -30,4 +32,6 @@
     <string name="error_empty_fields">Por favor complete todos los campos</string>
     <string name="error_invalid_rating">La calificación debe estar entre 1 y 5</string>
     <string name="error_generic">Ocurrió un error inesperado</string>
+    <string name="label_discography">Discography</string>
+    <string name="view_all">Ver todo</string>
 </resources>

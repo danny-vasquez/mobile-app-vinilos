@@ -20,4 +20,12 @@
     <color name="artist_on_surface_variant">#CBC4D2</color>
     <color name="vinilos_tertiary">#E7C365</color>
     <color name="primary_light_border">#33CFBCFF</color>
+    <color name="vinilos_secondary">#FFF9EF</color>
+    <color name="vinilos_outline">#948E9C</color>
+    <color name="vinilos_divider">#353438</color>
+    <color name="comment_card_bg">#1A1A22</color>
+    <color name="comment_card_border">#2A2A35</color>
+    <color name="comment_text">#CFCFD6</color>
+    <color name="comment_meta">#8A8A98</color>
+    <color name="comment_rating">#A970FF</color>
 </resources>
