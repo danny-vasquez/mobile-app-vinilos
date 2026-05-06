@@ -57,9 +57,8 @@ class AlbumAdapter(private val onClickListener: (Album) -> Unit) :
     private fun formatDate(isoDate: String): String {
         return try {
             val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", Locale.getDefault())
-            val outputFormat = SimpleDateFormat("d MMM. yyyy", Locale("es", "CO"))
             val date = inputFormat.parse(isoDate) ?: return isoDate
-            outputFormat.format(date)
+            SimpleDateFormat("yyyy", Locale.getDefault()).format(date)
         } catch (_: Exception) {
             isoDate
         }

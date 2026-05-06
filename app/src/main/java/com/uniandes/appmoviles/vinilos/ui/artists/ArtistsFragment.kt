@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import com.uniandes.appmoviles.vinilos.R
 import com.uniandes.appmoviles.vinilos.databinding.FragmentArtistsBinding
@@ -39,7 +39,7 @@ class ArtistsFragment : Fragment() {
             findNavController().navigate(R.id.action_artistsFragment_to_artistDetailFragment, bundle)
         }
 
-        binding.recyclerArtists.layoutManager = GridLayoutManager(requireContext(), 2)
+        binding.recyclerArtists.layoutManager = LinearLayoutManager(requireContext())
         binding.recyclerArtists.adapter = adapter
 
         binding.swipeRefresh.setOnRefreshListener {

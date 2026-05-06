@@ -4,35 +4,46 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="8dp"
+    android:layout_marginStart="16dp"
+    android:layout_marginEnd="16dp"
+    android:layout_marginTop="6dp"
+    android:layout_marginBottom="6dp"
+    app:cardBackgroundColor="@color/vinilos_surface"
     app:cardCornerRadius="8dp"
-    app:cardElevation="4dp">
+    app:cardElevation="2dp">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="horizontal"
+        android:padding="16dp"
+        android:gravity="center_vertical">
 
-        <ImageView
+        <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/artistImage"
-            android:layout_width="match_parent"
-            android:layout_height="160dp"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
             android:scaleType="centerCrop"
-            android:contentDescription="@string/artist_image" />
+            android:contentDescription="@string/artist_image"
+            app:shapeAppearance="@style/ShapeAppearance.Material3.Corner.Full"
+            app:strokeColor="@color/primary_light_border"
+            app:strokeWidth="2dp" />
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:orientation="vertical"
-            android:padding="8dp">
+            android:layout_marginStart="16dp">
 
             <TextView
                 android:id="@+id/artistName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="14sp"
+                android:textSize="17sp"
                 android:textStyle="bold"
-                android:textColor="@color/black"
+                android:fontFamily="@font/manrope"
+                android:textColor="@color/artist_on_surface"
                 android:maxLines="2"
                 android:ellipsize="end" />
 
@@ -40,13 +51,22 @@
                 android:id="@+id/artistBirthDate"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="11sp"
-                android:textColor="@color/black"
+                android:textSize="13sp"
+                android:fontFamily="@font/manrope"
+                android:textColor="@color/artist_on_surface_variant"
                 android:layout_marginTop="2dp"
                 android:maxLines="1"
                 android:ellipsize="end" />
 
         </LinearLayout>
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginStart="8dp"
+            android:contentDescription="@null"
+            app:srcCompat="@drawable/ic_chevron_right"
+            app:tint="@color/vinilos_tertiary" />
 
     </LinearLayout>
 

@@ -12,6 +12,8 @@
     <string name="label_birth_date">Fecha de nacimiento</string>
     <string name="nav_albums">Álbumes</string>
     <string name="nav_artists">Artistas</string>
+    <string name="artists_heading">Artists</string>
+    <string name="artists_subtitle">The architects of sound and vision.</string>
 
     <!-- Comentarios -->
     <string name="title_comments">Comentarios</string>
