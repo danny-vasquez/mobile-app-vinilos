@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
@@ -22,6 +23,7 @@ class AlbumDetailFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var viewModel: AlbumDetailViewModel
     private val commentAdapter = CommentAdapter()
+    private val trackAdapter = TrackAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -55,12 +57,15 @@ class AlbumDetailFragment : Fragment() {
             layoutManager = LinearLayoutManager(context)
             adapter = commentAdapter
         }
+        binding.tracksRecyclerView.apply {
+            layoutManager = LinearLayoutManager(context)
+            adapter = trackAdapter
+        }
     }
 
     private fun setupClickListeners() {
-        binding.btnAddComment.setOnClickListener {
-            showAddCommentDialog()
-        }
+        binding.btnBack.setOnClickListener { findNavController().navigateUp() }
+        binding.btnAddComment.setOnClickListener { showAddCommentDialog() }
     }
 
     private fun showAddCommentDialog() {
@@ -96,11 +101,13 @@ class AlbumDetailFragment : Fragment() {
 
     private fun observeViewModel() {
         viewModel.album.observe(viewLifecycleOwner) { album ->
+            binding.albumTitle.text = album.name
             binding.albumName.text = album.name
             binding.albumGenre.text = album.genre
             binding.albumReleaseDate.text = formatDate(album.releaseDate)
             binding.albumRecordLabel.text = album.recordLabel
             binding.albumDescription.text = album.description
+            trackAdapter.updateTracks(album.tracks)
             Glide.with(requireContext())
                 .load(album.cover)
                 .placeholder(R.drawable.ic_launcher_background)

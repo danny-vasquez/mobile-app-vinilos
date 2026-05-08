@@ -10,11 +10,14 @@ import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.uniandes.appmoviles.vinilos.model.Album
 import com.uniandes.appmoviles.vinilos.model.Artist
+import com.uniandes.appmoviles.vinilos.model.ArtistDetail
 import com.uniandes.appmoviles.vinilos.model.Comment
+import com.uniandes.appmoviles.vinilos.model.Track
 import org.json.JSONArray
 import org.json.JSONObject
 
-class NetworkServiceAdapter(context: Context) {
+class
+NetworkServiceAdapter(context: Context) {
 
     private val requestQueue: RequestQueue by lazy {
         Volley.newRequestQueue(context.applicationContext)
@@ -241,6 +244,56 @@ class NetworkServiceAdapter(context: Context) {
         requestQueue.add(request)
     }
 
+    fun getArtistDetail(
+        artistId: Int,
+        artistType: String,
+        onComplete: (ArtistDetail) -> Unit,
+        onError: (Exception) -> Unit
+    ) {
+        val endpoint = if (artistType == "band") "bands" else "musicians"
+        val url = "$BASE_URL/$endpoint/$artistId"
+        EspressoIdlingResource.increment()
+        val request = JsonObjectRequest(
+            Request.Method.GET, url, null,
+            { response ->
+                EspressoIdlingResource.decrement()
+                try {
+                    onComplete(parseArtistDetail(response))
+                } catch (e: Exception) {
+                    onError(Exception("Error al procesar los datos del artista"))
+                }
+            },
+            { error ->
+                EspressoIdlingResource.decrement()
+                onError(mapVolleyError(error))
+            }
+        )
+        requestQueue.add(request)
+    }
+
+    private fun parseArtistDetail(obj: JSONObject): ArtistDetail {
+        val albumsArray = obj.optJSONArray("albums")
+        val albums = mutableListOf<Album>()
+        if (albumsArray != null) {
+            for (i in 0 until albumsArray.length()) {
+                try {
+                    albums.add(parseAlbum(albumsArray.getJSONObject(i)))
+                } catch (_: Exception) { }
+            }
+        }
+        val date = obj.optString("birthDate", "").ifEmpty {
+            obj.optString("creationDate", "")
+        }
+        return ArtistDetail(
+            id = obj.optInt("id", 0),
+            name = obj.optString("name", ""),
+            image = obj.optString("image", ""),
+            description = obj.optString("description", ""),
+            date = date,
+            albums = albums
+        )
+    }
+
     private fun parseArtists(response: JSONArray): List<Artist> {
         val artists = mutableListOf<Artist>()
         for (i in 0 until response.length()) {
@@ -272,6 +325,18 @@ class NetworkServiceAdapter(context: Context) {
     }
 
     private fun parseAlbum(obj: JSONObject): Album {
+        val tracksArray = obj.optJSONArray("tracks")
+        val tracks = mutableListOf<Track>()
+        if (tracksArray != null) {
+            for (i in 0 until tracksArray.length()) {
+                val t = tracksArray.getJSONObject(i)
+                tracks.add(Track(
+                    id = t.optInt("id", 0),
+                    name = t.optString("name", ""),
+                    duration = t.optString("duration", "")
+                ))
+            }
+        }
         return Album(
             albumId = obj.optInt("id", 0),
             name = obj.optString("name", ""),
@@ -279,7 +344,8 @@ class NetworkServiceAdapter(context: Context) {
             releaseDate = obj.optString("releaseDate", ""),
             description = obj.optString("description", ""),
             genre = obj.optString("genre", ""),
-            recordLabel = obj.optString("recordLabel", "")
+            recordLabel = obj.optString("recordLabel", ""),
+            tracks = tracks
         )
     }
 

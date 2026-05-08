@@ -29,7 +29,7 @@ class CommentAdapter : RecyclerView.Adapter<CommentAdapter.CommentViewHolder>() 
     class CommentViewHolder(private val binding: ItemCommentBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(comment: Comment) {
             binding.commentUserName.text = comment.collectorName
-            binding.commentRating.text = "Calificación: ${comment.rating}/5"
+            binding.commentRating.text = "${comment.rating}/5"
             binding.commentDescription.text = comment.description
         }
     }

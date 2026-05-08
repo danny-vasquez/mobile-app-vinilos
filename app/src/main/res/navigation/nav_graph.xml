@@ -47,6 +47,10 @@
             android:name="artistId"
             app:argType="integer"
             android:defaultValue="0" />
+        <argument
+            android:name="artistType"
+            app:argType="string"
+            android:defaultValue="musician" />
     </fragment>
 
 </navigation>

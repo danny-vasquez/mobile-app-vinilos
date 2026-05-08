@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>VINILOS - Artists</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@700;800;900&amp;family=Manrope:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-variant": "#353438",
+              "on-background": "#e5e1e7",
+              "error-container": "#93000a",
+              "surface": "#141317",
+              "surface-container-high": "#2b292d",
+              "secondary-fixed-dim": "#e9c400",
+              "secondary": "#fff9ef",
+              "on-primary-fixed": "#22005d",
+              "on-tertiary": "#3e2e00",
+              "on-primary": "#381e72",
+              "tertiary": "#e7c365",
+              "on-tertiary-container": "#503d00",
+              "surface-container-lowest": "#0e0e11",
+              "inverse-primary": "#6750a4",
+              "outline-variant": "#494551",
+              "on-surface-variant": "#cbc4d2",
+              "inverse-on-surface": "#313034",
+              "on-secondary-fixed": "#221b00",
+              "on-primary-container": "#e0d2ff",
+              "inverse-surface": "#e5e1e7",
+              "primary": "#cfbcff",
+              "on-error-container": "#ffdad6",
+              "on-secondary": "#3a3000",
+              "primary-fixed-dim": "#cfbcff",
+              "on-secondary-container": "#725f00",
+              "surface-tint": "#cfbcff",
+              "on-secondary-fixed-variant": "#544600",
+              "primary-container": "#6750a4",
+              "surface-dim": "#141317",
+              "secondary-fixed": "#ffe16d",
+              "on-tertiary-fixed-variant": "#594400",
+              "surface-container": "#201f23",
+              "outline": "#948e9c",
+              "on-primary-fixed-variant": "#4f378a",
+              "surface-container-highest": "#353438",
+              "surface-container-low": "#1c1b1f",
+              "error": "#ffb4ab",
+              "secondary-container": "#ffdb3c",
+              "tertiary-fixed-dim": "#e7c365",
+              "on-tertiary-fixed": "#241a00",
+              "primary-fixed": "#e9ddff",
+              "surface-bright": "#3a383d",
+              "tertiary-fixed": "#ffdf93",
+              "on-surface": "#e5e1e7",
+              "on-error": "#690005",
+              "background": "#141317",
+              "tertiary-container": "#c9a74d"
+            },
+            fontFamily: {
+              "headline": ["Epilogue"],
+              "body": ["Manrope"],
+              "label": ["Manrope"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #141317;
+            color: #e5e1e7;
+            font-family: 'Manrope', sans-serif;
+        }
+        .editorial-shadow {
+            box-shadow: 0px 12px 24px rgba(207, 188, 255, 0.08);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-surface text-on-surface min-h-screen flex flex-col">
+<!-- TopAppBar -->
+<header class="bg-[#141317] dark:bg-[#141317] flex justify-between items-center w-full px-6 h-16 sticky top-0 z-50 transition-colors">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[#cfbcff]">album</span>
+<h1 class="text-2xl font-black tracking-tighter text-[#cfbcff] font-headline">VINILOS</h1>
+</div>
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-[#2b292d] transition-colors active:scale-95">
+<span class="material-symbols-outlined text-[#cfbcff]">search</span>
+</button>
+</header>
+<!-- Main Content: Artist List -->
+<main class="flex-grow px-6 pt-4 pb-24 max-w-2xl mx-auto w-full">
+<header class="mb-8">
+<h2 class="font-headline text-4xl font-bold text-on-surface tracking-tight mb-2">Artists</h2>
+<p class="text-on-surface-variant font-body">The architects of sound and vision.</p>
+</header>
+<div class="flex flex-col gap-4"><!-- The Beatles -->
+<div class="bg-surface-container-high editorial-shadow p-4 rounded-lg flex items-center justify-between group cursor-pointer hover:bg-[#3a383d] transition-colors duration-200">
+<div class="flex items-center gap-4">
+<div class="w-16 h-16 rounded-full overflow-hidden border-2 border-primary/20 shrink-0">
+<img class="w-full h-full object-cover" data-alt="The Beatles in their iconic early 1960s look" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDfgmt4SrFyNa4cE8Mo193M_S7LgvhxWImMMPZ4dc_3Dt2xigA0RgPFFiaIF06XH3BCYcnp_f_VFdbxTpDGwRH3CE19DBGwdPDSB-4aWwDDpVFJNr0law_R7GVl12RnOLIVfFBHisDHb2ar56HZT9EN8q_il5ena97u8xe_08XvR39_Zgp6rfvdWGF1buIYCaST9bx1WFUPyaDxDw9gkq-jyF6vBVskPmlURN5tUqIglkcTp-Yngl12TpPWHUUbKIFpvs_-kFi9IZZQ"/>
+</div>
+<div class="flex flex-col">
+<span class="text-on-surface font-bold text-lg leading-tight group-hover:text-primary transition-colors">The Beatles</span>
+<span class="text-on-surface-variant text-sm font-body">August 14, 1960</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-tertiary">chevron_right</span>
+</div>
+<!-- Michael Jackson -->
+<div class="bg-surface-container-high editorial-shadow p-4 rounded-lg flex items-center justify-between group cursor-pointer hover:bg-[#3a383d] transition-colors duration-200">
+<div class="flex items-center gap-4">
+<div class="w-16 h-16 rounded-full overflow-hidden border-2 border-primary/20 shrink-0">
+<img class="w-full h-full object-cover" data-alt="Michael Jackson during the Bad era" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA6XpXSx_YRGgArnA64Dp4ecm6X3ea-8Gf-tOzC8H4bGbRrJmT0LnvYKGjNHuVLEfhPDE0qwsikCNzhrR9yZ9k-MQxHUHiWFt4R9h4-navYg4VZogTZI59yIYl9JEe3S0pjpluUNVrBUqWsWvOg2ekPiGG42Lg2aErD0GEoLauU0YsoPtwiv4_GDPG5jPk7NvhxmTr0Evc3wt3s9GnAkverFKsL8ZxXE80TY3ZW4Fol9zd-ItaovknrqVn1vJNBtw68LEoN-JATs-WW"/>
+</div>
+<div class="flex flex-col">
+<span class="text-on-surface font-bold text-lg leading-tight group-hover:text-primary transition-colors">Michael Jackson</span>
+<span class="text-on-surface-variant text-sm font-body">August 29, 1958</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-tertiary">chevron_right</span>
+</div>
+<!-- Freddie Mercury -->
+<div class="bg-surface-container-high editorial-shadow p-4 rounded-lg flex items-center justify-between group cursor-pointer hover:bg-[#3a383d] transition-colors duration-200">
+<div class="flex items-center gap-4">
+<div class="w-16 h-16 rounded-full overflow-hidden border-2 border-primary/20 shrink-0">
+<img class="w-full h-full object-cover" data-alt="Freddie Mercury performing live at Wembley" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAv0rr9JWC7Xo9aFXevrUCKWIUeNkmrjsPmPXgs1nsdjvd6CDXLUxUmeMzL2JcddQil9brbwxoQhujw70gheGr2V4ddntwjCRuB8tmRj0aTt3qj8dDr8_a_KNlkUJ0D61vZbsGKV4GRe-Y3fL-Np-mchWFXTZb-aA3iEu5-ostcLaLYeVeUfjCih_-_7_ylb5OxU8hrPxSaGS5WCfkmA5yjyfb0D5BCPHv1kgmvMy5pUoG5x5hKThvpiaZ8lv0gqtNUcvmNjhRyZSdL"/>
+</div>
+<div class="flex flex-col">
+<span class="text-on-surface font-bold text-lg leading-tight group-hover:text-primary transition-colors">Freddie Mercury / Queen</span>
+<span class="text-on-surface-variant text-sm font-body">September 5, 1946</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-tertiary">chevron_right</span>
+</div>
+<!-- Prince -->
+<div class="bg-surface-container-high editorial-shadow p-4 rounded-lg flex items-center justify-between group cursor-pointer hover:bg-[#3a383d] transition-colors duration-200">
+<div class="flex items-center gap-4">
+<div class="w-16 h-16 rounded-full overflow-hidden border-2 border-primary/20 shrink-0">
+<img class="w-full h-full object-cover" data-alt="Prince in purple aesthetic" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC2pRFPzNA_wiRng8SDjKn1YHCqok4MiZo1Qf1ep4JjzAnyY_iqlVkecWYK5IpWxPiyPLKuj6jWY2KI-OEIPA0zAzBQxPM1jfY7cVLx97oJk_XoMsZLSRvKC2HPsu3XsF-odR-bYX8Kefzigdvanrm10srnPSqWT8FBrZEeH0MZ0v_ciqVFkNXo9fRvVB3E_59qn5HiiP5b4UGSYe21LbYvKFdYw5cjHCjSfR5KJ2J_VmB-N185VcTBS4wJ46pJ8rMd_M2MZbL1Ak6f"/>
+</div>
+<div class="flex flex-col">
+<span class="text-on-surface font-bold text-lg leading-tight group-hover:text-primary transition-colors">Prince</span>
+<span class="text-on-surface-variant text-sm font-body">June 7, 1958</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-tertiary">chevron_right</span>
+</div>
+<!-- Aretha Franklin -->
+<div class="bg-surface-container-high editorial-shadow p-4 rounded-lg flex items-center justify-between group cursor-pointer hover:bg-[#3a383d] transition-colors duration-200">
+<div class="flex items-center gap-4">
+<div class="w-16 h-16 rounded-full overflow-hidden border-2 border-primary/20 shrink-0">
+<img class="w-full h-full object-cover" data-alt="Aretha Franklin, the Queen of Soul" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCZjx4D6iyXSSC5NNJELs7iipT2ZJiAqgaEjAPMqGIkzuuRn_7sYk2bdK96qdq0PYTol8LmCmKlJGf3ivrEEBL0Nzzvgt5Rbfq2qbm1Ql3w5qlgpZ_YRAG4VFHD7lrMpRVuk4TZ_KXczfrBfJNh_F5celm-27xbykw86JWk7QXVl5R9zdPx6CZLdOiVdGkVML0m9zQFvHgmRFszsZUj8ovGGCopdoOIC5tdp6FPEWW1LSx52bjc8timM4ogspjpkLaTwiiROcdqpXwp"/>
+</div>
+<div class="flex flex-col">
+<span class="text-on-surface font-bold text-lg leading-tight group-hover:text-primary transition-colors">Aretha Franklin</span>
+<span class="text-on-surface-variant text-sm font-body">March 25, 1942</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-tertiary">chevron_right</span>
+</div>
+<!-- Jimi Hendrix -->
+<div class="bg-surface-container-high editorial-shadow p-4 rounded-lg flex items-center justify-between group cursor-pointer hover:bg-[#3a383d] transition-colors duration-200">
+<div class="flex items-center gap-4">
+<div class="w-16 h-16 rounded-full overflow-hidden border-2 border-primary/20 shrink-0">
+<img class="w-full h-full object-cover" data-alt="Jimi Hendrix with his guitar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAM0sSdp_KMhKhCma6FolcCyaaafW4xGjIkAcOssjlSd2L7Hi-a-6U2MeJg6whYjC75O_TZ0ACEq-mGeqe8JZGZzbl9bCx2VXMkkqc_gzEbKzc_IStikSBVbpd44tyLoyKlS0kr2Suu07ER2R47vD6jqjS9-Lkp_ymuIHuojZtjwNRiXi7LEA6SYBsMXjFxoBnRUyI3FOldCXkT_Tgj21r-FZ7Bcfvo0RODeJKGqetajbBiymaeVgbqStetD2gbsN_hv7G4txFJgJXc"/>
+</div>
+<div class="flex flex-col">
+<span class="text-on-surface font-bold text-lg leading-tight group-hover:text-primary transition-colors">Jimi Hendrix</span>
+<span class="text-on-surface-variant text-sm font-body">November 27, 1942</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-tertiary">chevron_right</span>
+</div>
+<!-- Bob Dylan -->
+<div class="bg-surface-container-high editorial-shadow p-4 rounded-lg flex items-center justify-between group cursor-pointer hover:bg-[#3a383d] transition-colors duration-200">
+<div class="flex items-center gap-4">
+<div class="w-16 h-16 rounded-full overflow-hidden border-2 border-primary/20 shrink-0">
+<img class="w-full h-full object-cover" data-alt="Bob Dylan with harmonica and guitar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAdFcNjIMNapSyz9LaKUOEP2OsD6-Si1x_xzG_hlSv1gH_CQWINnWtodyLYQlluARY2J_8sFZOwl-emq658up7tMuguPtJsWACHJ9IBljT1Nrc79gkH78pC8GLcY6kctP1-OAW8FxHn7MWQZYF_krtZAd8K9hu1C9fMyWemcOgsC37reTkRTAX4na3uyaXG0g-gjWLKzLZT63FF7iU_eToNpDm_YMFS3YQ17nCBn3OowpLi_Jc216iowDkDVigeJlE_kZC0FTEBg4nh"/>
+</div>
+<div class="flex flex-col">
+<span class="text-on-surface font-bold text-lg leading-tight group-hover:text-primary transition-colors">Bob Dylan</span>
+<span class="text-on-surface-variant text-sm font-body">May 24, 1941</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-tertiary">chevron_right</span>
+</div>
+<!-- Elvis Presley -->
+<div class="bg-surface-container-high editorial-shadow p-4 rounded-lg flex items-center justify-between group cursor-pointer hover:bg-[#3a383d] transition-colors duration-200">
+<div class="flex items-center gap-4">
+<div class="w-16 h-16 rounded-full overflow-hidden border-2 border-primary/20 shrink-0">
+<img class="w-full h-full object-cover" data-alt="Elvis Presley, the King of Rock and Roll" src="https://lh3.googleusercontent.com/aida-public/AB6AXuClrXxpH6hqj9KKz7wDh5hz00nGOdlU0syccp5sVaHQndRKj2pqXUQonrbQbiQk4SxE8RZDshaW6Wuw9hRKFj56ADqeQTJrqRuUB5wJzuatWKmGFoTgyQ1KX-dgOtF8ZHQEwPqkelfxm12so67kiNI3lYPeWCXH5qkGVGKfq4a3B5XzawFcrHCmUGR5C1Jetnei0Dss3o8gXxkYNCj1PYuOjHXy5jymfbBEicSq0ZlcFiLYMTQp3HUvdvDdxc_Tl1WblCOY9jwC7y9n"/>
+</div>
+<div class="flex flex-col">
+<span class="text-on-surface font-bold text-lg leading-tight group-hover:text-primary transition-colors">Elvis Presley</span>
+<span class="text-on-surface-variant text-sm font-body">January 8, 1935</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-tertiary">chevron_right</span>
+</div></div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pb-4 pt-2 bg-[#141317]/70 backdrop-blur-md z-50 shadow-[0px_-4px_16px_rgba(0,0,0,0.4)]">
+<!-- Tab: Albums -->
+<a class="flex flex-col items-center justify-center text-[#fff9ef] opacity-50 px-5 py-1.5 hover:opacity-100 transition-opacity active:scale-95 duration-200" href="#">
+<span class="material-symbols-outlined">library_music</span>
+<span class="font-label text-[11px] font-bold uppercase tracking-widest mt-1">Albums</span>
+</a>
+<!-- Tab: Artists (Active) -->
+<a class="flex flex-col items-center justify-center bg-[#6750a4] text-[#fff9ef] rounded-xl px-5 py-1.5 active:scale-95 duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">person_filled</span>
+<span class="font-label text-[11px] font-bold uppercase tracking-widest mt-1">Artists</span>
+</a>
+<!-- Tab: Collectors -->
+<a class="flex flex-col items-center justify-center text-[#fff9ef] opacity-50 px-5 py-1.5 hover:opacity-100 transition-opacity active:scale-95 duration-200" href="#">
+<span class="material-symbols-outlined">group</span>
+<span class="font-label text-[11px] font-bold uppercase tracking-widest mt-1">Collectors</span>
+</a>
+</nav>
+</body></html>
