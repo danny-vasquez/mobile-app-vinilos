@@ -43,7 +43,7 @@ class AlbumsFragment : Fragment() {
         binding.recyclerAlbums.adapter = adapter
 
         binding.swipeRefresh.setOnRefreshListener {
-            viewModel.fetchAlbums()
+            viewModel.fetchAlbums(forceRefresh = true)
         }
 
         observeViewModel()
@@ -63,7 +63,7 @@ class AlbumsFragment : Fragment() {
         viewModel.error.observe(viewLifecycleOwner) { errorMsg ->
             if (!errorMsg.isNullOrBlank()) {
                 Snackbar.make(binding.root, errorMsg, Snackbar.LENGTH_LONG)
-                    .setAction(R.string.retry) { viewModel.fetchAlbums() }
+                    .setAction(R.string.retry) { viewModel.fetchAlbums(forceRefresh = true) }
                     .show()
             }
         }

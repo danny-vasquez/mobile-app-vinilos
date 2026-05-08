@@ -112,6 +112,7 @@ class AlbumDetailFragment : Fragment() {
                 .load(album.cover)
                 .placeholder(R.drawable.ic_launcher_background)
                 .error(R.drawable.ic_launcher_background)
+                .transition(com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade())
                 .into(binding.albumCover)
         }
         viewModel.comments.observe(viewLifecycleOwner) { comments ->

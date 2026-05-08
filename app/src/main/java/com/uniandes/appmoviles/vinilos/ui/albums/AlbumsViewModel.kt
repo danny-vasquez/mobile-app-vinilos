@@ -20,7 +20,8 @@ class AlbumsViewModel(application: Application) : AndroidViewModel(application) 
     private val _error = MutableLiveData<String?>()
     val error: LiveData<String?> get() = _error
 
-    fun fetchAlbums() {
+    fun fetchAlbums(forceRefresh: Boolean = false) {
+        if (!forceRefresh && _albums.value?.isNotEmpty() == true) return
         if (_isLoading.value == true) return
         _error.value = null
         _isLoading.value = true

@@ -69,6 +69,8 @@ class ArtistDetailFragment : Fragment() {
                 .load(artist.image)
                 .centerCrop()
                 .placeholder(R.drawable.ic_launcher_background)
+                .error(R.drawable.ic_launcher_background)
+                .transition(com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade())
                 .into(binding.artistImage)
             discographyAdapter.updateAlbums(artist.albums)
         }
