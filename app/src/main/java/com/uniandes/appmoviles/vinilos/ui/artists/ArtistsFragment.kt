@@ -43,7 +43,7 @@ class ArtistsFragment : Fragment() {
         binding.recyclerArtists.adapter = adapter
 
         binding.swipeRefresh.setOnRefreshListener {
-            viewModel.fetchArtists()
+            viewModel.fetchArtists(forceRefresh = true)
         }
 
         observeViewModel()
@@ -65,7 +65,7 @@ class ArtistsFragment : Fragment() {
             if (!errorMsg.isNullOrBlank()) {
                 binding.emptyView.visibility = View.GONE
                 Snackbar.make(binding.root, errorMsg, Snackbar.LENGTH_LONG)
-                    .setAction(R.string.retry) { viewModel.fetchArtists() }
+                    .setAction(R.string.retry) { viewModel.fetchArtists(forceRefresh = true) }
                     .show()
             }
         }

@@ -16,12 +16,14 @@ import com.uniandes.appmoviles.vinilos.model.Track
 import org.json.JSONArray
 import org.json.JSONObject
 
-class
-NetworkServiceAdapter(context: Context) {
+class NetworkServiceAdapter(context: Context) {
 
     private val requestQueue: RequestQueue by lazy {
         Volley.newRequestQueue(context.applicationContext)
     }
+
+    private val albumDetailCache = HashMap<Int, Album>()
+    private val artistDetailCache = HashMap<String, ArtistDetail>()
 
     companion object {
         private var instance: NetworkServiceAdapter? = null
@@ -60,6 +62,10 @@ NetworkServiceAdapter(context: Context) {
         onComplete: (Album) -> Unit,
         onError: (Exception) -> Unit
     ) {
+        albumDetailCache[albumId]?.let {
+            onComplete(it)
+            return
+        }
         val url = "$BASE_URL/albums/$albumId"
         EspressoIdlingResource.increment()
         val request = JsonObjectRequest(
@@ -67,7 +73,9 @@ NetworkServiceAdapter(context: Context) {
             { response ->
                 EspressoIdlingResource.decrement()
                 try {
-                    onComplete(parseAlbum(response))
+                    val album = parseAlbum(response)
+                    albumDetailCache[albumId] = album
+                    onComplete(album)
                 } catch (e: Exception) {
                     onError(Exception("Error al procesar los datos del álbum"))
                 }
@@ -250,6 +258,11 @@ NetworkServiceAdapter(context: Context) {
         onComplete: (ArtistDetail) -> Unit,
         onError: (Exception) -> Unit
     ) {
+        val cacheKey = "${artistType}_${artistId}"
+        artistDetailCache[cacheKey]?.let {
+            onComplete(it)
+            return
+        }
         val endpoint = if (artistType == "band") "bands" else "musicians"
         val url = "$BASE_URL/$endpoint/$artistId"
         EspressoIdlingResource.increment()
@@ -258,7 +271,9 @@ NetworkServiceAdapter(context: Context) {
             { response ->
                 EspressoIdlingResource.decrement()
                 try {
-                    onComplete(parseArtistDetail(response))
+                    val detail = parseArtistDetail(response)
+                    artistDetailCache[cacheKey] = detail
+                    onComplete(detail)
                 } catch (e: Exception) {
                     onError(Exception("Error al procesar los datos del artista"))
                 }
