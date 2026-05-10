@@ -20,6 +20,14 @@ class MainActivity : AppCompatActivity() {
         val navController = navHost.navController
 
         binding.bottomNav.setupWithNavController(navController)
+
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            if (destination.id == R.id.albumsFragment) {
+                binding.fab.show()
+            } else {
+                binding.fab.hide()
+            }
+        }
     }
 
     override fun onSupportNavigateUp(): Boolean {
