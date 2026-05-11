@@ -1,0 +1,7 @@
+package com.uniandes.appmoviles.vinilos.model
+
+data class Track(
+    val id: Int,
+    val name: String,
+    val duration: String
+)

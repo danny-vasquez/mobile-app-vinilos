@@ -1,9 +1,13 @@
 package com.uniandes.appmoviles.vinilos
 
-import androidx.test.espresso.Espresso.onView
 import androidx.navigation.Navigation
+import androidx.recyclerview.widget.RecyclerView
+import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.IdlingRegistry
+import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.contrib.RecyclerViewActions
+import androidx.test.espresso.matcher.ViewMatchers.hasMinimumChildCount
 import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.ext.junit.rules.ActivityScenarioRule
@@ -37,30 +41,38 @@ class ArtistsListE2ETest {
     }
 
     @Test
-    fun swipeRefreshIsDisplayed() {
-        onView(withId(R.id.swipeRefresh))
-            .check(matches(isDisplayed()))
-    }
-
-    @Test
-    fun progressBarIsHiddenAfterLoad() {
-        onView(withId(R.id.progressBar))
-            .check(matches(not(isDisplayed())))
-    }
-
-    @Test
-    fun emptyViewIsShownWhenNoArtists() {
-        onView(withId(R.id.progressBar))
-            .check(matches(not(isDisplayed())))
-        onView(withId(R.id.emptyView))
-            .check(matches(isDisplayed()))
-    }
-
-    @Test
-    fun recyclerIsHiddenWhenListIsEmpty() {
-        onView(withId(R.id.progressBar))
-            .check(matches(not(isDisplayed())))
+    fun artistsListIsDisplayed() {
         onView(withId(R.id.recyclerArtists))
+            .check(matches(isDisplayed()))
+    }
+
+    @Test
+    fun artistsAreLoadedSuccessfully() {
+        onView(withId(R.id.recyclerArtists))
+            .check(matches(hasMinimumChildCount(1)))
+    }
+
+    @Test
+    fun progressBarIsHiddenAfterLoading() {
+        onView(withId(R.id.recyclerArtists))
+            .check(matches(hasMinimumChildCount(1)))
+        onView(withId(R.id.progressBar))
             .check(matches(not(isDisplayed())))
+    }
+
+    @Test
+    fun emptyViewIsHiddenWhenArtistsExist() {
+        onView(withId(R.id.recyclerArtists))
+            .check(matches(hasMinimumChildCount(1)))
+        onView(withId(R.id.emptyView))
+            .check(matches(not(isDisplayed())))
+    }
+
+    @Test
+    fun clickingFirstArtistNavigatesToDetail() {
+        onView(withId(R.id.recyclerArtists))
+            .perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(0, click()))
+        onView(withId(R.id.artistName))
+            .check(matches(isDisplayed()))
     }
 }

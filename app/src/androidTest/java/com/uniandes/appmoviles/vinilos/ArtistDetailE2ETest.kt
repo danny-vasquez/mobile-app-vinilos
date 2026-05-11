@@ -43,7 +43,7 @@ class ArtistDetailE2ETest {
     }
 
     @Test
-    fun artistDetailContentLayoutIsDisplayed() {
+    fun artistDetailScrollViewIsDisplayed() {
         onView(withId(R.id.contentLayout))
             .check(matches(isDisplayed()))
     }
@@ -56,8 +56,8 @@ class ArtistDetailE2ETest {
     }
 
     @Test
-    fun artistBirthDateIsDisplayed() {
-        onView(withId(R.id.artistBirthDate))
+    fun artistDateIsDisplayed() {
+        onView(withId(R.id.artistDate))
             .check(matches(isDisplayed()))
     }
 
