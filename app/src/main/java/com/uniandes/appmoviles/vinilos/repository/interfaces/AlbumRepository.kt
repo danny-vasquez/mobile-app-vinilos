@@ -1,6 +1,9 @@
 package com.uniandes.appmoviles.vinilos.repository.interfaces
 
 import com.uniandes.appmoviles.vinilos.model.Album
+import com.uniandes.appmoviles.vinilos.model.AlbumRequest
+import com.uniandes.appmoviles.vinilos.model.Track
+import com.uniandes.appmoviles.vinilos.model.TrackRequest
 
 interface AlbumRepository {
     fun getAlbums(onComplete: (List<Album>) -> Unit, onError: (Exception) -> Unit)
@@ -14,6 +17,17 @@ interface AlbumRepository {
         description: String,
         rating: Int,
         onComplete: () -> Unit,
+        onError: (Exception) -> Unit
+    )
+    fun createAlbum(
+        albumRequest: AlbumRequest,
+        onComplete: (Album) -> Unit,
+        onError: (Exception) -> Unit
+    )
+    fun addTrack(
+        albumId: Int,
+        trackRequest: TrackRequest,
+        onSuccess: (Track) -> Unit,
         onError: (Exception) -> Unit
     )
 }

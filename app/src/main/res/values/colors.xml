@@ -28,4 +28,5 @@
     <color name="comment_text">#CFCFD6</color>
     <color name="comment_meta">#8A8A98</color>
     <color name="comment_rating">#A970FF</color>
+    <color name="error">#FFCCBB</color>
 </resources>

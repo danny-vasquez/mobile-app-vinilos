@@ -34,4 +34,27 @@
     <string name="error_generic">Ocurrió un error inesperado</string>
     <string name="label_discography">Discography</string>
     <string name="view_all">Ver todo</string>
+
+    <!-- Crear álbum -->
+    <string name="title_new_album">Nuevo álbum</string>
+    <string name="back">Volver</string>
+    <string name="header_catalog_entry">Nueva entrada</string>
+    <string name="subtitle_catalog_entry">Completa los datos del álbum para agregarlo al catálogo de Vinilos.</string>
+    <string name="hint_album_name">Nombre del álbum</string>
+    <string name="hint_cover_url">URL de portada (https://…)</string>
+    <string name="hint_release_date">Seleccionar fecha</string>
+    <string name="btn_save_album">Guardar álbum</string>
+    <string name="msg_album_created">¡Álbum creado exitosamente!</string>
+
+    <!-- Agregar track -->
+    <string name="title_add_track">Agregar track</string>
+    <string name="header_add_track">Nuevo track</string>
+    <string name="subtitle_add_track">Ingresa el nombre y la duración del track para agregarlo al álbum.</string>
+    <string name="hint_track_name">Nombre del track</string>
+    <string name="hint_track_duration">Duración — ej: 3:45 o 1:02:30</string>
+    <string name="helper_duration_format">Formato: MM:SS o HH:MM:SS</string>
+    <string name="btn_save_track">Guardar track</string>
+    <string name="msg_track_added">Track agregado exitosamente</string>
+    <string name="hint_add_track">Agregar track</string>
+    <string name="btn_add_track">Agregar track</string>
 </resources>

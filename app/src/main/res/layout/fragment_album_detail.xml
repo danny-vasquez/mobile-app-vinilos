@@ -224,17 +224,36 @@
                     android:paddingEnd="24dp"
                     android:paddingBottom="32dp">
 
-                    <TextView
-                        android:id="@+id/labelTracks"
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/label_tracks"
-                        android:textSize="11sp"
-                        android:fontFamily="@font/epilogue"
-                        android:textStyle="bold"
-                        android:textColor="@color/vinilos_outline"
-                        android:letterSpacing="0.1"
-                        android:layout_marginBottom="4dp" />
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginBottom="4dp">
+
+                        <TextView
+                            android:id="@+id/labelTracks"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/label_tracks"
+                            android:textSize="11sp"
+                            android:fontFamily="@font/epilogue"
+                            android:textStyle="bold"
+                            android:textColor="@color/vinilos_outline"
+                            android:textAllCaps="true"
+                            android:letterSpacing="0.1" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnAddTrack"
+                            style="@style/Widget.Material3.Button.OutlinedButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/btn_add_track"
+                            app:icon="@drawable/ic_add"
+                            app:iconSize="16dp" />
+
+                    </LinearLayout>
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/tracksRecyclerView"

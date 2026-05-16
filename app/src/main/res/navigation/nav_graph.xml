@@ -14,13 +14,36 @@
         <action
             android:id="@+id/action_albumsFragment_to_albumDetailFragment"
             app:destination="@id/albumDetailFragment" />
+        <action
+            android:id="@+id/action_albumsFragment_to_createAlbumFragment"
+            app:destination="@id/createAlbumFragment" />
     </fragment>
+
+    <fragment
+        android:id="@+id/createAlbumFragment"
+        android:name="com.uniandes.appmoviles.vinilos.ui.albums.CreateAlbumFragment"
+        android:label="Nuevo álbum"
+        tools:layout="@layout/fragment_create_album" />
 
     <fragment
         android:id="@+id/albumDetailFragment"
         android:name="com.uniandes.appmoviles.vinilos.ui.albums.AlbumDetailFragment"
         android:label="Detalle del álbum"
         tools:layout="@layout/fragment_album_detail">
+        <argument
+            android:name="albumId"
+            app:argType="integer"
+            android:defaultValue="0" />
+        <action
+            android:id="@+id/action_albumDetailFragment_to_addTrackFragment"
+            app:destination="@id/addTrackFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/addTrackFragment"
+        android:name="com.uniandes.appmoviles.vinilos.ui.albums.AddTrackFragment"
+        android:label="Agregar track"
+        tools:layout="@layout/fragment_add_track">
         <argument
             android:name="albumId"
             app:argType="integer"
