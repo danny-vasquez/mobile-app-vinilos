@@ -12,6 +12,7 @@ import com.uniandes.appmoviles.vinilos.model.Album
 import com.uniandes.appmoviles.vinilos.model.AlbumRequest
 import com.uniandes.appmoviles.vinilos.model.Artist
 import com.uniandes.appmoviles.vinilos.model.ArtistDetail
+import com.uniandes.appmoviles.vinilos.model.Collector
 import com.uniandes.appmoviles.vinilos.model.Comment
 import com.uniandes.appmoviles.vinilos.model.Track
 import com.uniandes.appmoviles.vinilos.model.TrackRequest
@@ -269,6 +270,59 @@ class NetworkServiceAdapter(context: Context) {
                     collectorsMap[obj.optInt("id")] = obj.optString("name")
                 }
                 onComplete(collectorsMap)
+            },
+            { error ->
+                EspressoIdlingResource.decrement()
+                onError(mapVolleyError(error))
+            }
+        )
+        requestQueue.add(request)
+    }
+
+    fun getCollectorsList(
+        onComplete: (List<Collector>) -> Unit,
+        onError: (Exception) -> Unit
+    ) {
+        val url = "$BASE_URL/collectors"
+        EspressoIdlingResource.increment()
+        val request = JsonArrayRequest(
+            Request.Method.GET, url, null,
+            { response ->
+                EspressoIdlingResource.decrement()
+                val collectors = mutableListOf<Collector>()
+                for (i in 0 until response.length()) {
+                    val obj = response.getJSONObject(i)
+                    collectors.add(Collector(id = obj.optInt("id"), name = obj.optString("name")))
+                }
+                onComplete(collectors)
+            },
+            { error ->
+                EspressoIdlingResource.decrement()
+                onError(mapVolleyError(error))
+            }
+        )
+        requestQueue.add(request)
+    }
+
+    fun postCollectorAlbum(
+        collectorId: Int,
+        albumId: Int,
+        price: Double,
+        status: String,
+        onComplete: () -> Unit,
+        onError: (Exception) -> Unit
+    ) {
+        val url = "$BASE_URL/collectors/$collectorId/albums/$albumId"
+        val body = JSONObject().apply {
+            put("price", price)
+            put("status", status)
+        }
+        EspressoIdlingResource.increment()
+        val request = JsonObjectRequest(
+            Request.Method.POST, url, body,
+            { _ ->
+                EspressoIdlingResource.decrement()
+                onComplete()
             },
             { error ->
                 EspressoIdlingResource.decrement()

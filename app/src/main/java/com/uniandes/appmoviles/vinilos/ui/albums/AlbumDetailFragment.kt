@@ -78,6 +78,12 @@ class AlbumDetailFragment : Fragment() {
                 findNavController().navigate(R.id.action_albumDetailFragment_to_addTrackFragment, bundle)
             }
         }
+        binding.btnAddToCollector.setOnClickListener {
+            if (albumId > 0) {
+                val bundle = Bundle().apply { putInt("albumId", albumId) }
+                findNavController().navigate(R.id.action_albumDetailFragment_to_addCollectorAlbumFragment, bundle)
+            }
+        }
     }
 
     private fun showAddCommentDialog() {

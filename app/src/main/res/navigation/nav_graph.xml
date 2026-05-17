@@ -37,6 +37,20 @@
         <action
             android:id="@+id/action_albumDetailFragment_to_addTrackFragment"
             app:destination="@id/addTrackFragment" />
+        <action
+            android:id="@+id/action_albumDetailFragment_to_addCollectorAlbumFragment"
+            app:destination="@id/addCollectorAlbumFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/addCollectorAlbumFragment"
+        android:name="com.uniandes.appmoviles.vinilos.ui.albums.AddCollectorAlbumFragment"
+        android:label="Agregar a coleccionista"
+        tools:layout="@layout/fragment_add_collector_album">
+        <argument
+            android:name="albumId"
+            app:argType="integer"
+            android:defaultValue="0" />
     </fragment>
 
     <fragment
