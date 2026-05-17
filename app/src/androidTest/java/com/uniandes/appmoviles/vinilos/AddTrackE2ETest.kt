@@ -9,14 +9,11 @@ import androidx.test.espresso.action.ViewActions.replaceText
 import androidx.test.espresso.action.ViewActions.scrollTo
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.contrib.RecyclerViewActions
-import androidx.test.espresso.matcher.RootMatchers.isPlatformPopup
 import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.espresso.matcher.ViewMatchers.withId
-import androidx.test.espresso.matcher.ViewMatchers.withText
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.uniandes.appmoviles.vinilos.network.EspressoIdlingResource
-import org.hamcrest.Matchers.not
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
@@ -24,91 +21,61 @@ import org.junit.Test
 import org.junit.runner.RunWith
 
 @RunWith(AndroidJUnit4::class)
-class AddCollectorAlbumE2ETest {
+class AddTrackE2ETest {
 
     @get:Rule
     val activityRule = ActivityScenarioRule(MainActivity::class.java)
 
     @Before
-    fun setUp() {
+    fun navigateToAddTrack() {
         IdlingRegistry.getInstance().register(EspressoIdlingResource.countingIdlingResource)
-
         Thread.sleep(3000)
-
         onView(withId(R.id.recyclerAlbums))
             .check(matches(isDisplayed()))
-
         onView(withId(R.id.recyclerAlbums))
             .perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(0, click()))
-
-        onView(withId(R.id.btnAddToCollector))
+        onView(withId(R.id.btnAddTrack))
             .perform(scrollTo(), click())
     }
 
     @After
-    fun tearDown() {
+    fun unregisterIdlingResource() {
         IdlingRegistry.getInstance().unregister(EspressoIdlingResource.countingIdlingResource)
     }
 
     @Test
-    fun addCollectorAlbumFormIsDisplayed() {
-        onView(withId(R.id.tilCollector))
-            .check(matches(isDisplayed()))
-        onView(withId(R.id.tilPrice))
-            .check(matches(isDisplayed()))
-        onView(withId(R.id.tilStatus))
-            .check(matches(isDisplayed()))
-        onView(withId(R.id.btnSave))
-            .check(matches(isDisplayed()))
+    fun addTrackFormIsDisplayed() {
+        onView(withId(R.id.tilName)).check(matches(isDisplayed()))
+        onView(withId(R.id.tilDuration)).check(matches(isDisplayed()))
+        onView(withId(R.id.btnSave)).check(matches(isDisplayed()))
     }
 
     @Test
-    fun addCollectorAlbumFlow() {
-        onView(withId(R.id.actvCollector)).perform(click())
-        onView(withText("Manolo Bellon")).inRoot(isPlatformPopup()).perform(click())
-
-        onView(withId(R.id.etPrice))
-            .perform(replaceText("25000"), closeSoftKeyboard())
-
-        onView(withId(R.id.actvStatus)).perform(click())
-        onView(withText("Active")).inRoot(isPlatformPopup()).perform(click())
-
+    fun addTrackFlow() {
+        onView(withId(R.id.etName))
+            .perform(replaceText("Pinta el Mundo de Esperanza"), closeSoftKeyboard())
+        onView(withId(R.id.etDuration))
+            .perform(replaceText("4:15"), closeSoftKeyboard())
         onView(withId(R.id.btnSave)).perform(click())
         Thread.sleep(3000)
         onView(withId(R.id.albumName)).check(matches(isDisplayed()))
     }
 
     @Test
-    fun addCollectorAlbumValidationNoCollector() {
-        onView(withId(R.id.etPrice))
-            .perform(replaceText("25000"), closeSoftKeyboard())
-
-        onView(withId(R.id.actvStatus))
-            .perform(replaceText("Active"), closeSoftKeyboard())
-
+    fun addTrackValidationEmptyName() {
         onView(withId(R.id.btnSave)).perform(click())
-
-        onView(withId(R.id.tilCollector))
-            .check(matches(isDisplayed()))
+        onView(withId(R.id.tilName)).check(matches(isDisplayed()))
+        onView(withId(R.id.btnSave)).check(matches(isDisplayed()))
     }
 
     @Test
-    fun addCollectorAlbumValidationNoPrice() {
-        onView(withId(R.id.actvCollector))
-            .perform(replaceText("Manolo Bellon"), closeSoftKeyboard())
-
-        onView(withId(R.id.actvStatus))
-            .perform(replaceText("Active"), closeSoftKeyboard())
-
+    fun addTrackValidationInvalidDuration() {
+        onView(withId(R.id.etName))
+            .perform(replaceText("Test Track"), closeSoftKeyboard())
+        onView(withId(R.id.etDuration))
+            .perform(replaceText("duracion-invalida"), closeSoftKeyboard())
         onView(withId(R.id.btnSave)).perform(click())
-
-        onView(withId(R.id.tilPrice))
-            .check(matches(isDisplayed()))
-    }
-
-    @Test
-    fun progressBarIsHiddenAfterCollectorsLoad() {
-        onView(withId(R.id.progressIndicator))
-            .check(matches(not(isDisplayed())))
+        onView(withId(R.id.tilDuration)).check(matches(isDisplayed()))
+        onView(withId(R.id.btnSave)).check(matches(isDisplayed()))
     }
 }
