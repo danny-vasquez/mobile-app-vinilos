@@ -2,6 +2,9 @@ package com.uniandes.appmoviles.vinilos.repository.impl
 
 import android.content.Context
 import com.uniandes.appmoviles.vinilos.model.Album
+import com.uniandes.appmoviles.vinilos.model.AlbumRequest
+import com.uniandes.appmoviles.vinilos.model.Track
+import com.uniandes.appmoviles.vinilos.model.TrackRequest
 import com.uniandes.appmoviles.vinilos.network.NetworkServiceAdapter
 import com.uniandes.appmoviles.vinilos.repository.interfaces.AlbumRepository
 
@@ -46,6 +49,23 @@ class AlbumRepositoryImpl(private val context: Context) : AlbumRepository {
                 onComplete(comments)
             })
         }, onError)
+    }
+
+    override fun createAlbum(
+        albumRequest: AlbumRequest,
+        onComplete: (Album) -> Unit,
+        onError: (Exception) -> Unit
+    ) {
+        networkAdapter.postAlbum(albumRequest, onComplete, onError)
+    }
+
+    override fun addTrack(
+        albumId: Int,
+        trackRequest: TrackRequest,
+        onSuccess: (Track) -> Unit,
+        onError: (Exception) -> Unit
+    ) {
+        networkAdapter.postTrack(albumId, trackRequest, onSuccess, onError)
     }
 
     override fun addComment(

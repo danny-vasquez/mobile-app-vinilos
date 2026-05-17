@@ -28,6 +28,12 @@ class MainActivity : AppCompatActivity() {
                 binding.fab.hide()
             }
         }
+
+        binding.fab.setOnClickListener {
+            if (navController.currentDestination?.id == R.id.albumsFragment) {
+                navController.navigate(R.id.action_albumsFragment_to_createAlbumFragment)
+            }
+        }
     }
 
     override fun onSupportNavigateUp(): Boolean {
