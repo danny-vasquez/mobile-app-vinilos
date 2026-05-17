@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.appcompat.app.AlertDialog
+import androidx.fragment.app.setFragmentResultListener
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -24,6 +25,7 @@ class AlbumDetailFragment : Fragment() {
     private lateinit var viewModel: AlbumDetailViewModel
     private val commentAdapter = CommentAdapter()
     private val trackAdapter = TrackAdapter()
+    private var albumId = 0
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -41,11 +43,15 @@ class AlbumDetailFragment : Fragment() {
 
         setupRecyclerView()
 
-        val albumId = arguments?.getInt("albumId") ?: 0
+        albumId = arguments?.getInt("albumId") ?: 0
         if (albumId > 0) {
             viewModel.fetchAlbum(albumId)
         } else {
             Snackbar.make(binding.root, "ID de álbum inválido", Snackbar.LENGTH_LONG).show()
+        }
+
+        setFragmentResultListener("track_added") { _, _ ->
+            if (albumId > 0) viewModel.fetchAlbum(albumId)
         }
 
         observeViewModel()
@@ -66,6 +72,18 @@ class AlbumDetailFragment : Fragment() {
     private fun setupClickListeners() {
         binding.btnBack.setOnClickListener { findNavController().navigateUp() }
         binding.btnAddComment.setOnClickListener { showAddCommentDialog() }
+        binding.btnAddTrack.setOnClickListener {
+            if (albumId > 0) {
+                val bundle = Bundle().apply { putInt("albumId", albumId) }
+                findNavController().navigate(R.id.action_albumDetailFragment_to_addTrackFragment, bundle)
+            }
+        }
+        binding.btnAddToCollector.setOnClickListener {
+            if (albumId > 0) {
+                val bundle = Bundle().apply { putInt("albumId", albumId) }
+                findNavController().navigate(R.id.action_albumDetailFragment_to_addCollectorAlbumFragment, bundle)
+            }
+        }
     }
 
     private fun showAddCommentDialog() {
@@ -90,7 +108,6 @@ class AlbumDetailFragment : Fragment() {
                 if (name.isBlank() || telephone.isBlank() || email.isBlank() || description.isBlank() || rating == 0) {
                     Snackbar.make(dialogBinding.root, R.string.error_empty_fields, Snackbar.LENGTH_SHORT).show()
                 } else {
-                    val albumId = arguments?.getInt("albumId") ?: 0
                     viewModel.addComment(albumId, name, telephone, email, description, rating)
                     alertDialog.dismiss()
                 }
@@ -126,7 +143,6 @@ class AlbumDetailFragment : Fragment() {
             if (!errorMsg.isNullOrBlank()) {
                 Snackbar.make(binding.root, errorMsg, Snackbar.LENGTH_LONG)
                     .setAction(R.string.retry) {
-                        val albumId = arguments?.getInt("albumId") ?: 0
                         if (albumId > 0) viewModel.fetchAlbum(albumId)
                     }
                     .show()

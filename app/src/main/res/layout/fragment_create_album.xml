@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/vinilos_background"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:fitsSystemWindows="true">
+
+        <!-- Top bar -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingStart="4dp"
+            android:paddingEnd="4dp"
+            android:background="@color/vinilos_background">
+
+            <ImageButton
+                android:id="@+id/btnBack"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                app:srcCompat="@drawable/ic_arrow_back"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/back"
+                android:scaleType="center" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/title_new_album"
+                android:textColor="@color/md_theme_primary_container"
+                android:fontFamily="@font/epilogue"
+                android:textStyle="bold"
+                android:textAllCaps="true"
+                android:textSize="18sp" />
+
+            <View
+                android:layout_width="48dp"
+                android:layout_height="48dp" />
+
+        </LinearLayout>
+
+        <!-- Form content -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:paddingTop="4dp"
+            android:paddingBottom="40dp">
+
+            <!-- Header -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/header_catalog_entry"
+                android:fontFamily="@font/epilogue"
+                android:textStyle="bold"
+                android:textAllCaps="true"
+                android:textColor="@color/artist_on_surface"
+                android:textSize="26sp"
+                android:letterSpacing="-0.02"
+                android:layout_marginBottom="4dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/subtitle_catalog_entry"
+                android:fontFamily="@font/manrope"
+                android:textColor="@color/artist_on_surface_variant"
+                android:textSize="13sp"
+                android:lineSpacingMultiplier="1.4"
+                android:layout_marginBottom="20dp" />
+
+            <!-- Nombre del álbum -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilName"
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="14dp"
+                android:hint="@string/hint_album_name"
+                app:boxBackgroundColor="@color/vinilos_surface"
+                app:boxStrokeColor="@color/primary_light_border"
+                app:boxStrokeErrorColor="@color/error"
+                app:boxCornerRadiusTopStart="12dp"
+                app:boxCornerRadiusTopEnd="12dp"
+                app:boxCornerRadiusBottomStart="12dp"
+                app:boxCornerRadiusBottomEnd="12dp"
+                app:hintTextColor="@color/artist_on_surface_variant">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/artist_on_surface"
+                    android:fontFamily="@font/manrope"
+                    android:inputType="textCapWords"
+                    android:imeOptions="actionNext" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- URL de portada -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilCover"
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="14dp"
+                android:hint="@string/hint_cover_url"
+                app:boxBackgroundColor="@color/vinilos_surface"
+                app:boxStrokeColor="@color/primary_light_border"
+                app:boxStrokeErrorColor="@color/error"
+                app:boxCornerRadiusTopStart="12dp"
+                app:boxCornerRadiusTopEnd="12dp"
+                app:boxCornerRadiusBottomStart="12dp"
+                app:boxCornerRadiusBottomEnd="12dp"
+                app:hintTextColor="@color/artist_on_surface_variant">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etCover"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/artist_on_surface"
+                    android:fontFamily="@font/manrope"
+                    android:inputType="textUri"
+                    android:imeOptions="actionNext" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Fecha de lanzamiento -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilReleaseDate"
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="14dp"
+                android:hint="@string/label_release_date"
+                app:boxBackgroundColor="@color/vinilos_surface"
+                app:boxStrokeColor="@color/primary_light_border"
+                app:boxStrokeErrorColor="@color/error"
+                app:boxCornerRadiusTopStart="12dp"
+                app:boxCornerRadiusTopEnd="12dp"
+                app:boxCornerRadiusBottomStart="12dp"
+                app:boxCornerRadiusBottomEnd="12dp"
+                app:hintTextColor="@color/artist_on_surface_variant"
+                app:endIconMode="custom"
+                app:endIconDrawable="@drawable/ic_calendar"
+                app:endIconTint="@color/artist_on_surface_variant"
+                app:endIconContentDescription="@string/hint_release_date">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etReleaseDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/artist_on_surface"
+                    android:fontFamily="@font/manrope"
+                    android:inputType="none"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:cursorVisible="false" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Género -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilGenre"
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="14dp"
+                android:hint="@string/label_genre"
+                app:boxBackgroundColor="@color/vinilos_surface"
+                app:boxStrokeColor="@color/primary_light_border"
+                app:boxStrokeErrorColor="@color/error"
+                app:boxCornerRadiusTopStart="12dp"
+                app:boxCornerRadiusTopEnd="12dp"
+                app:boxCornerRadiusBottomStart="12dp"
+                app:boxCornerRadiusBottomEnd="12dp"
+                app:hintTextColor="@color/artist_on_surface_variant">
+
+                <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                    android:id="@+id/actvGenre"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/artist_on_surface"
+                    android:fontFamily="@font/manrope"
+                    android:inputType="none" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Sello discográfico -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilRecordLabel"
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="14dp"
+                android:hint="@string/label_record_label"
+                app:boxBackgroundColor="@color/vinilos_surface"
+                app:boxStrokeColor="@color/primary_light_border"
+                app:boxStrokeErrorColor="@color/error"
+                app:boxCornerRadiusTopStart="12dp"
+                app:boxCornerRadiusTopEnd="12dp"
+                app:boxCornerRadiusBottomStart="12dp"
+                app:boxCornerRadiusBottomEnd="12dp"
+                app:hintTextColor="@color/artist_on_surface_variant">
+
+                <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                    android:id="@+id/actvRecordLabel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/artist_on_surface"
+                    android:fontFamily="@font/manrope"
+                    android:inputType="none" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Descripción -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/tilDescription"
+                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                android:hint="@string/label_description"
+                app:boxBackgroundColor="@color/vinilos_surface"
+                app:boxStrokeColor="@color/primary_light_border"
+                app:boxStrokeErrorColor="@color/error"
+                app:boxCornerRadiusTopStart="12dp"
+                app:boxCornerRadiusTopEnd="12dp"
+                app:boxCornerRadiusBottomStart="12dp"
+                app:boxCornerRadiusBottomEnd="12dp"
+                app:hintTextColor="@color/artist_on_surface_variant">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/etDescription"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/artist_on_surface"
+                    android:fontFamily="@font/manrope"
+                    android:inputType="textMultiLine|textCapSentences"
+                    android:minLines="3"
+                    android:gravity="top|start"
+                    android:imeOptions="actionDone" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <!-- Botón guardar + indicador de progreso -->
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnSave"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/btn_save_album"
+                    android:textColor="@color/white"
+                    android:fontFamily="@font/epilogue"
+                    android:textStyle="bold"
+                    android:textAllCaps="true"
+                    android:letterSpacing="0.08"
+                    android:paddingTop="16dp"
+                    android:paddingBottom="16dp"
+                    app:cornerRadius="12dp"
+                    app:backgroundTint="@color/md_theme_primary" />
+
+                <com.google.android.material.progressindicator.CircularProgressIndicator
+                    android:id="@+id/progressIndicator"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:visibility="gone"
+                    app:indicatorColor="@color/white"
+                    app:trackColor="@color/md_theme_primary"
+                    app:trackThickness="3dp" />
+
+            </FrameLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>
