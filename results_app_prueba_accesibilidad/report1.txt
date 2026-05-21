@@ -1,0 +1,37 @@
+A continuación, encontrarás una lista de oportunidades para mejorar la accesibilidad de Vinilos. Cada elemento corresponde a un área descrita en la captura de pantalla adjunta.
+
+Contraste de la imagen
+com.uniandes.appmoviles.vinilos:id/text_input_end_icon
+¿Por qué no aumentas la relación de contraste entre los colores de fondo y de primer plano de esta imagen?
+La relación de contraste de la imagen es 1.19. Esta relación se basa en un color de primer plano estimado de #1C1B1F y un color de fondo estimado de #2B2930. ¿Por qué no aumentas esta relación a 3.00 o a un valor superior?
+
+Contraste de la imagen
+com.uniandes.appmoviles.vinilos:id/text_input_end_icon
+¿Por qué no aumentas la relación de contraste entre los colores de fondo y de primer plano de esta imagen?
+La relación de contraste de la imagen es 1.19. Esta relación se basa en un color de primer plano estimado de #1C1B1F y un color de fondo estimado de #2B2930. ¿Por qué no aumentas esta relación a 3.00 o a un valor superior?
+
+Contraste de la imagen
+com.uniandes.appmoviles.vinilos:id/text_input_end_icon
+¿Por qué no aumentas la relación de contraste entre los colores de fondo y de primer plano de esta imagen?
+La relación de contraste de la imagen es 1.19. Esta relación se basa en un color de primer plano estimado de #1C1B1F y un color de fondo estimado de #2B2930. ¿Por qué no aumentas esta relación a 3.00 o a un valor superior?
+
+Contraste del texto
+com.uniandes.appmoviles.vinilos:id/etCover
+¿Por qué no aumentas la relación de contraste entre el color de fondo y de primer plano del texto de este elemento?
+La relación de contraste del texto del elemento es 1.19. Esta cifra se basa en un color de primer plano estimado de #1C1B1F y un color de fondo estimado de #2B2930. Te recomendamos que aumentes la relación de contraste del texto de ese elemento a 4.50 o a un valor superior.
+
+Descripciones de elementos
+com.uniandes.appmoviles.vinilos:id/text_input_end_icon
+Hay varios elementos con la misma descripción.
+El texto hablado de este elemento en el que se puede hacer clic: "no marcado, Mostrar menú desplegable" es idéntico al de otros 1 elementos.
+
+Ajuste de texto
+[0,93][1080,138]
+Este ViewGroup tiene una altura fija y contiene una TextView con texto ajustable.
+Prueba a modificar los LayoutParams para permitir que el texto se amplíe. Es posible que este elemento solo sea parcialmente visible en un contenedor desplazable.
+
+Texto no expuesto
+com.uniandes.appmoviles.vinilos:id/etName
+Posible texto detectado: Vinilos.
+Comprueba que la etiqueta de accesibilidad de este elemento incluya su texto de forma visible.
+

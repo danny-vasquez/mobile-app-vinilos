@@ -30,6 +30,8 @@ class CreateAlbumViewModel(private val repository: AlbumRepository) : ViewModel(
         genre: String,
         recordLabel: String
     ) {
+        if (_uiState.value is CreateAlbumUiState.Loading) return
+
         val validationError = validate(name, cover, releaseDate, description, genre, recordLabel)
         if (validationError != null) {
             _uiState.value = validationError
