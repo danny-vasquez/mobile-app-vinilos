@@ -1,0 +1,17 @@
+A continuación, encontrarás una lista de oportunidades para mejorar la accesibilidad de Vinilos. Cada elemento corresponde a un área descrita en la captura de pantalla adjunta.
+
+Contraste de la imagen
+[44,137][121,214]
+¿Por qué no aumentas la relación de contraste entre los colores de fondo y de primer plano de esta imagen?
+La relación de contraste de la imagen es 2.66. Esta relación se basa en un color de primer plano estimado de #6750A4 y un color de fondo estimado de #1C1B1F. ¿Por qué no aumentas esta relación a 3.00 o a un valor superior?
+
+Contraste de la imagen
+[926,2048][992,2114]
+¿Por qué no aumentas la relación de contraste entre los colores de fondo y de primer plano de esta imagen?
+La relación de contraste de la imagen es 1.01. Esta relación se basa en un color de primer plano estimado de #2F2B38 y un color de fondo estimado de #2F2C39. ¿Por qué no aumentas esta relación a 3.00 o a un valor superior? Es posible que este elemento quede oculto por el contenido que aparece en pantalla. Comprueba el contraste del elemento manualmente.
+
+Contraste del texto
+[143,139][970,211]
+¿Por qué no aumentas la relación de contraste entre el color de fondo y de primer plano del texto de este elemento?
+La relación de contraste del texto del elemento es 2.66. Esta cifra se basa en un color de primer plano estimado de #6750A4 y un color de fondo estimado de #1C1B1F. Te recomendamos que aumentes la relación de contraste del texto de ese elemento a 3.00 o a un valor superior.
+

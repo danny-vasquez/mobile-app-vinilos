@@ -1,6 +1,7 @@
 package com.uniandes.appmoviles.vinilos.network
 
 import android.content.Context
+import com.android.volley.DefaultRetryPolicy
 import com.android.volley.NoConnectionError
 import com.android.volley.Request
 import com.android.volley.RequestQueue
@@ -72,6 +73,7 @@ class NetworkServiceAdapter(context: Context) {
                 onError(mapVolleyError(error))
             }
         )
+        request.retryPolicy = DefaultRetryPolicy(30_000, 0, 1.0f)
         requestQueue.add(request)
     }
 
@@ -105,6 +107,7 @@ class NetworkServiceAdapter(context: Context) {
                 onError(mapVolleyError(error))
             }
         )
+        request.retryPolicy = DefaultRetryPolicy(30_000, 0, 1.0f)
         requestQueue.add(request)
     }
 
