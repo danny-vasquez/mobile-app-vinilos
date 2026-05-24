@@ -28,6 +28,8 @@ class AddTrackViewModel(
     private val durationRegex = Regex("""^\d{1,2}:\d{2}(:\d{2})?$""")
 
     fun addTrack(name: String, duration: String) {
+        if (_uiState.value is AddTrackUiState.Loading) return
+
         val validationError = validate(name, duration)
         if (validationError != null) {
             _uiState.value = validationError
